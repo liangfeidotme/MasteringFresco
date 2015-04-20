@@ -1,17 +1,38 @@
 package com.liangfeizc.masteringfresco;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.drawee.drawable.ProgressBarDrawable;
+import com.facebook.drawee.drawable.ScalingUtils;
+import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
+import com.facebook.drawee.generic.RoundingParams;
+import com.facebook.drawee.view.SimpleDraweeView;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    private SimpleDraweeView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        img = (SimpleDraweeView) findViewById(R.id.circle_img);
+
+        GenericDraweeHierarchyBuilder builder = new GenericDraweeHierarchyBuilder(getResources());
+        builder.setProgressBarImage(new ProgressBarDrawable());
+        builder.setPlaceholderImage(new ColorDrawable(Color.DKGRAY));
+        builder.setRoundingParams(RoundingParams.asCircle());
+        builder.setActualImageScaleType(ScalingUtils.ScaleType.CENTER_INSIDE);
+
+        img.setHierarchy(builder.build());
     }
 
 
@@ -31,6 +52,7 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            img.setImageURI(Uri.parse(Images.URL));
             return true;
         }
 
