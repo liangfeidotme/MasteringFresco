@@ -1,38 +1,32 @@
 package com.liangfeizc.masteringfresco;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RadioGroup;
+import android.widget.SeekBar;
 
-import com.facebook.drawee.drawable.ProgressBarDrawable;
-import com.facebook.drawee.drawable.ScalingUtils;
-import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
-import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import roboguice.activity.RoboActionBarActivity;
+import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
 
-public class MainActivity extends ActionBarActivity {
 
-    private SimpleDraweeView img;
+@ContentView(R.layout.activity_main)
+public class MainActivity extends RoboActionBarActivity {
+
+    @InjectView(R.id.circle_img) SimpleDraweeView img;
+    @InjectView(R.id.aspect_radio) SeekBar aspectRatioSeekBar;
+    @InjectView(R.id.which_fixed) RadioGroup whichFixedRadioGrp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        img = (SimpleDraweeView) findViewById(R.id.circle_img);
-
-        GenericDraweeHierarchyBuilder builder = new GenericDraweeHierarchyBuilder(getResources());
-        builder.setProgressBarImage(new ProgressBarDrawable());
-        builder.setPlaceholderImage(new ColorDrawable(Color.DKGRAY));
-        builder.setRoundingParams(RoundingParams.asCircle());
-        builder.setActualImageScaleType(ScalingUtils.ScaleType.CENTER_INSIDE);
-
-        img.setHierarchy(builder.build());
+        img.setAspectRatio(1f);
+        img.setImageURI(Uri.parse(Images.URL));
     }
 
 
@@ -52,7 +46,6 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            img.setImageURI(Uri.parse(Images.URL));
             return true;
         }
 
