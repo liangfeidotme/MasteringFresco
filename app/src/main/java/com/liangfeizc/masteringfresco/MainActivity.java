@@ -1,5 +1,7 @@
 package com.liangfeizc.masteringfresco;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -74,9 +76,12 @@ public class MainActivity extends RoboActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                break;
+            case R.id.action_drawable:
+                startActivity(new Intent(this, DrawableActivity.class));
+                break;
         }
 
         return super.onOptionsItemSelected(item);

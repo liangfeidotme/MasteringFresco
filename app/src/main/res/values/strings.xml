@@ -5,4 +5,8 @@
     <string name="aspect_ratio">长宽比</string>
     <string name="fixed_width">宽度固定</string>
     <string name="fixed_height">高度固定</string>
+    <string name="title_activity_drawable">DrawableActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="drawables">drawables</string>
 </resources>
