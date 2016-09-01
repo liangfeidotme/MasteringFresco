@@ -1,5 +1,1 @@
-Fresco 源码分析
----
-
-> 写代码没什么灵感，专心看代码吧
-
+[新しい場所](https://github.com/LyndonChin/TheCode/tree/master/fresco)
